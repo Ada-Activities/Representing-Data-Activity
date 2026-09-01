@@ -37,27 +37,51 @@ def reshape_conference_data(registrations):
     Example:
         conference_data[2021]["long talk"] -> [("Priya", None)]
     """
-    pass
+    conference_data = {}
+    for record in registrations:
+        year = record["year"]
+        event_type = record["event_type"]
+        attendee = (record["attendee"], record["scholarship_tier"])
+        if year not in conference_data:
+            conference_data[year] = {}
+        if event_type not in conference_data[year]:
+            conference_data[year][event_type] = []
+        conference_data[year][event_type].append(attendee)
+    return conference_data
 
 
 def list_event_types(conference_data, year):
     """Part B, Q1: Return a list of every event type offered in a given year."""
-    pass
+    return list(conference_data[year].keys())
 
 
 def total_attendance(conference_data, year):
     """Part B, Q2: Return the total number of sign-ups (all event types) for a given year."""
-    pass
+    total = 0
+    for event_type, attendees in conference_data[year].items():
+        total += len(attendees)
+    return total
 
 
 def most_popular_event_type(conference_data):
     """Part B, Q3: Return the event type with the most total sign-ups across all years."""
-    pass
+    totals = {}
+    for year, events in conference_data.items():
+        for event_type, attendees in events.items():
+            if event_type not in totals:
+                totals[event_type] = 0
+            totals[event_type] += len(attendees)
+    return max(totals, key=totals.get)
 
 
 def get_scholarship_attendees(conference_data, year):
     """Part B, Q4: Return a list of names of attendees who used a scholarship ticket in a given year."""
-    pass
+    names = []
+    for event_type, attendees in conference_data[year].items():
+        for name, tier in attendees:
+            if tier is not None:
+                names.append(name)
+    return names
 
 
 if __name__ == "__main__":
