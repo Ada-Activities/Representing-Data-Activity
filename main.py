@@ -8,6 +8,8 @@ As you implement each function below, its print statement at the bottom of
 this file will start showing real output instead of None.
 """
 
+from pprint import pprint
+
 # Raw registration records exported from the Cool Dev Conf database.
 # Each dict is one attendee signing up for one event in one year.
 registrations = [
@@ -84,7 +86,8 @@ def get_scholarship_attendees(conference_data, year):
 
 if __name__ == "__main__":
     conference_data = reshape_conference_data(registrations)
-    print("Nested conference data:", conference_data)
+    print("Nested conference data:")
+    pprint(conference_data)
 
     print("2021 event types:", list_event_types(conference_data, 2021))
     print("2023 total attendance:", total_attendance(conference_data, 2023))
