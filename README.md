@@ -75,6 +75,12 @@ right before moving to the next.
    given year.
 2. `total_attendance(conference_data, year)`: return the total number of sign-ups (across all
    event types) for a given year.
+
+### Optional Practice
+
+If you finished writing `list_event_types` and `total_attendance`, work on implementing the
+functions below for additional practice.
+
 3. `most_popular_event_type(conference_data)`: return the event type with the most total
    sign-ups across all years. This one needs a loop inside a loop, since you have to add up
    counts across every year.
