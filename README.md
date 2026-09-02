@@ -101,12 +101,3 @@ function, re-run the file — the output updates automatically to show your real
 The nested `conference_data` structure gets printed with `pprint` (short for "pretty print"), a
 built-in Python function that lays out nested dictionaries and lists one piece at a time instead
 of jamming everything onto one line — much easier to read while you're checking your work.
-
-## Checking your work
-
-Once you're done, you can compare your implementation against
-a fully worked solution on the `solution` branch:
-
-```bash
-git checkout solution
-```
