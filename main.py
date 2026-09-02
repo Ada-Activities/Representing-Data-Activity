@@ -53,7 +53,7 @@ def reshape_conference_data(registrations):
 def list_event_types(conference_data, year):
     """Part B, Q1: Return a list of every event type offered in a given year."""
     events = []
-    for event_type in conference_data[year].keys():
+    for event_type in conference_data[year]:
         events.append(event_type)
     return events
 
