@@ -52,36 +52,46 @@ def reshape_conference_data(registrations):
 
 def list_event_types(conference_data, year):
     """Part B, Q1: Return a list of every event type offered in a given year."""
-    return list(conference_data[year].keys())
+    events = []
+    for event_type in conference_data[year].keys():
+        events.append(event_type)
+
+    return events
 
 
 def total_attendance(conference_data, year):
     """Part B, Q2: Return the total number of sign-ups (all event types) for a given year."""
     total = 0
-    for event_type, attendees in conference_data[year].items():
+    for attendees in conference_data[year].values():
         total += len(attendees)
     return total
 
 
+def get_scholarship_attendees(conference_data, year):
+    """Part B, Q3: Return a list of names of attendees who used a scholarship ticket in a given year."""
+    names = []
+    for attendees in conference_data[year].values():
+        for name, tier in attendees:
+            if tier is not None:
+                names.append(name)
+    return names
+
 def most_popular_event_type(conference_data):
-    """Part B, Q3: Return the event type with the most total sign-ups across all years."""
+    """Part B, Q4: Return the event type with the most total sign-ups across all years."""
     totals = {}
     for year, events in conference_data.items():
         for event_type, attendees in events.items():
             if event_type not in totals:
                 totals[event_type] = 0
             totals[event_type] += len(attendees)
-    return max(totals, key=totals.get)
 
-
-def get_scholarship_attendees(conference_data, year):
-    """Part B, Q4: Return a list of names of attendees who used a scholarship ticket in a given year."""
-    names = []
-    for event_type, attendees in conference_data[year].items():
-        for name, tier in attendees:
-            if tier is not None:
-                names.append(name)
-    return names
+    most_popular = None
+    highest_total = 0
+    for event_type, total in totals.items():
+        if most_popular is None or total > highest_total:
+            most_popular = event_type
+            highest_total = total
+    return most_popular
 
 
 if __name__ == "__main__":
@@ -91,5 +101,5 @@ if __name__ == "__main__":
 
     print("2021 event types:", list_event_types(conference_data, 2021))
     print("2023 total attendance:", total_attendance(conference_data, 2023))
-    print("Most popular event type:", most_popular_event_type(conference_data))
     print("2024 scholarship attendees:", get_scholarship_attendees(conference_data, 2024))
+    print("Most popular event type:", most_popular_event_type(conference_data))
