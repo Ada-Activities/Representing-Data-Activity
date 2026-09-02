@@ -1,5 +1,6 @@
-# Cool Dev Conf: Nested Data Lab
+# Cool Dev Conf: Nested Data Activity
 
+gi
 Imagine there is a small online conference named "Cool Dev Conf." The organizers collect and
 analyze attendee info during each conference, so they can understand which years and conference
 events were the most popular. Cool Dev Conf is held yearly. The conference has many different
