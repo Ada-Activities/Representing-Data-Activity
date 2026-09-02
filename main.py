@@ -55,14 +55,13 @@ def list_event_types(conference_data, year):
     events = []
     for event_type in conference_data[year].keys():
         events.append(event_type)
-
     return events
 
 
 def total_attendance(conference_data, year):
     """Part B, Q2: Return the total number of sign-ups (all event types) for a given year."""
     total = 0
-    for attendees in conference_data[year].values():
+    for attendees in conference_data[year]:
         total += len(attendees)
     return total
 
@@ -70,7 +69,9 @@ def total_attendance(conference_data, year):
 def get_scholarship_attendees(conference_data, year):
     """Part B, Q3: Return a list of names of attendees who used a scholarship ticket in a given year."""
     names = []
-    for attendees in conference_data[year].values():
+    events_of_year = conference_data[year]
+
+    for attendees in events_of_year.values():
         for name, tier in attendees:
             if tier is not None:
                 names.append(name)
@@ -79,7 +80,7 @@ def get_scholarship_attendees(conference_data, year):
 def most_popular_event_type(conference_data):
     """Part B, Q4: Return the event type with the most total sign-ups across all years."""
     totals = {}
-    for year, events in conference_data.items():
+    for events in conference_data.values():
         for event_type, attendees in events.items():
             if event_type not in totals:
                 totals[event_type] = 0
