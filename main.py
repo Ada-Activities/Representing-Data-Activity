@@ -61,7 +61,7 @@ def list_event_types(conference_data, year):
 def total_attendance(conference_data, year):
     """Part B, Q2: Return the total number of sign-ups (all event types) for a given year."""
     total = 0
-    for attendees in conference_data[year]:
+    for attendees in conference_data[year].values():
         total += len(attendees)
     return total
 
